@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { AppFacade, AuthFacade } from '@showsnsuch/core-state';
+import { AppFacade, AuthFacade, SavedFacade } from '@showsnsuch/core-state';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -15,16 +15,23 @@ export class AppComponent implements OnInit, OnDestroy {
   loading$: Observable<boolean> = this.appFacade.loading$;
 
   links = [
-    {path: '', title: 'movies', icon: 'movie'},
+    {path: 'search', title: 'search', icon: 'search'},
+    {path: 'saved', title: 'saved', icon: 'movie'},
   ];
 
   constructor(
     private authFacade: AuthFacade,
     private appFacade: AppFacade,
+    private savedFacade: SavedFacade
   ){}
 
   ngOnInit(): void {
+    if (!localStorage.getItem('SAVED_MOVIES')) {
+      localStorage.setItem('SAVED_MOVIES', '[]');
+    }
+
     this.appFacade.initialize();
+    this.savedFacade.loadSaved();
   }
 
   ngOnDestroy(): void {

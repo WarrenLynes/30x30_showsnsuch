@@ -1,23 +1,23 @@
 // import { appReducer, IAppState } from './app.reducer';
 // import { ActionReducerMap } from '@ngrx/store';
 // import { authReducer, IAuthState } from './auth.reducer';
-// import * as fromPhones from './phones.reducer';
+// import * as fromSaved from './saved.reducer';
 //
 // export interface State {
 //   app: IAppState;
 //   auth: IAuthState;
-//   phones: fromPhones.PhonesState;
+//   saved: fromSaved.SavedState;
 // }
 //
 // export const reducers: ActionReducerMap<State> = {
 //   app: appReducer,
 //   auth: authReducer,
-//   phones: fromPhones.reducer,
+//   saved: fromSaved.reducer,
 // };
 //
 // export const defaultState: State = {
 //   app:
-//   phones: { ids: [] } as fromPhones.PhonesState
+//   saved: { ids: [] } as fromSaved.SavedState
 // };
 //
 //

@@ -1,0 +1,38 @@
+<form (ngSubmit)="onSearch()" [formGroup]="searchForm">
+  <mat-form-field>
+    <mat-label>search</mat-label>
+    <input matInput type="text" formControlName="search">
+  </mat-form-field>
+</form>
+<div class="container">
+  <div class="col-12" *ngIf="searchResults$ | async; else choosesomething">
+    <mat-card>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let data of searchResults$ | async" [ngClass]="{savedmovie: (saved$ | async)?.indexOf(data.imdbID) > -1}">
+            <div mat-line>
+              <div class="container">
+                <img [src]="data.Poster" alt="" class="thumb">
+
+                <h1 style="flex: 1; text-align: right;">{{data.Title}}</h1>
+
+                <div class="actions">
+                  <button mat-flat-button [routerLink]="'/search/' + data.imdbID"> view </button>
+                  <button mat-flat-button (click)="saveMovie(data.imdbID)"> save </button>
+                </div>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+
+        <button (click)="paginate()">page</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #choosesomething>
+  <h1 style="text-align: center"> Search for something ... </h1>
+</ng-template>
+
+

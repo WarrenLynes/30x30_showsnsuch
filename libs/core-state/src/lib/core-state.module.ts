@@ -10,6 +10,8 @@ import { RootStoreConfig, StoreModule } from '@ngrx/store';
 import { CoreDataModule } from '@showsnsuch/core-data';
 import { reducers } from '.';
 import { AuthEffects } from './auth/auth.effects';
+import { SavedEffects } from './saved/saved.effects';
+import { MoviesEffects } from './movies/movies.effects';
 
 const storeConfig: RootStoreConfig<any> = {
   runtimeChecks: {
@@ -25,7 +27,9 @@ const storeConfig: RootStoreConfig<any> = {
     CoreDataModule,
     StoreModule.forRoot(reducers, storeConfig),
     EffectsModule.forRoot([
-      AuthEffects
+      AuthEffects,
+      SavedEffects,
+      MoviesEffects
     ]),
     StoreDevtoolsModule.instrument({ name: 'showsnsuch Store' })
   ],
