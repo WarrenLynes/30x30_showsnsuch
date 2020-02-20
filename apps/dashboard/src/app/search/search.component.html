@@ -16,8 +16,11 @@
           <mat-list-item *ngFor="let data of searchResults$ | async">
             <div class="liked-item-overlay" *ngIf="(saved$ | async)?.indexOf(data.imdbID) > -1"></div>
 
-            <img [src]="data.Poster" class="thumb">
-            <h1 class="movie-title">{{data.Title}}</h1>
+            <div class="poster-container">
+              <img [src]="data.Poster" class="thumb">
+            </div>
+
+            <h3 style="flex: 1 1 auto">{{data.Title}}</h3>
             <button mat-icon-button class="full-width" [routerLink]="'/search/' + data.imdbID"> <mat-icon>zoom_out_map</mat-icon> </button>
             <button mat-icon-button class="full-width" (click)="saveMovie(data.imdbID)"> <mat-icon>thumbs_up_down</mat-icon> </button>
           </mat-list-item>
@@ -32,5 +35,4 @@
     </mat-card>
   </div>
 </div>
-
 

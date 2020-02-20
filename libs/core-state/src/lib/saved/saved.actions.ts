@@ -31,9 +31,9 @@ export const savedUpdated = createAction(
 );
 export const deleteSaved = createAction(
   '[SAVED][DELETE]',
-  props<{ saved: Saved }>()
+  props<{ id: any }>()
 );
 export const savedDeleted = createAction(
   '[SAVED][DELETED]',
-  props<{ saved: Saved }>()
+  props<{ id: any }>()
 );

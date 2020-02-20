@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SavedFacade } from '@showsnsuch/core-state';
 
 @Component({
   selector: 'showsnsuch-movie-detail',
@@ -16,7 +17,8 @@ export class MovieDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private savedFacade: SavedFacade
   ) { }
 
   ngOnInit() {
@@ -26,4 +28,7 @@ export class MovieDetailComponent implements OnInit {
     this.movie$ = this.http.get(url);
   }
 
+  delete(id) {
+    this.savedFacade.deleteSaved(id);
+  }
 }

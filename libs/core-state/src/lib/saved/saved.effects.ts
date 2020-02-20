@@ -68,7 +68,7 @@ export class SavedEffects {
         console.log('Effect Error:', error);
       }
     })
-  );
+  );*/
 
   deleteSaved$ = createEffect(() =>
     this.dataPersistence.pessimisticUpdate(savedActions.deleteSaved, {
@@ -77,8 +77,8 @@ export class SavedEffects {
         state: SavedPartialState
       ) => {
         this.appFacade.addLoad('[SAVED][DELETE]');
-        return this.savedService.delete(action.saved.id).pipe(
-          map((saved: Saved) => savedActions.savedDeleted({ saved })),
+        return this.savedService.delete(action.id).pipe(
+          map((id: any) => savedActions.savedDeleted({ id })),
           tap(() => this.notifyService.openSnackBar('Successfully Deleted a Saved')),
           tap(() => this.savedFacade.loadSaved()),
           tap(() => this.appFacade.removeLoad('[SAVED][DELETE]'))
@@ -88,7 +88,7 @@ export class SavedEffects {
         console.log('Effect Error:', error);
       }
     })
-  );*/
+  );
 
   constructor(
     private actions$: Actions,

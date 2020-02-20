@@ -65,5 +65,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
 
+  getStyle({Poster}) {
+    return `background: url(${Poster})`;
+  }
 
 }

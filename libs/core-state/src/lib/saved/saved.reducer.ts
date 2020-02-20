@@ -36,8 +36,8 @@ const savedReducer = createReducer(
   on(savedActions.savedUpdated, (state, { saved }) =>
     savedAdapter.upsertOne(saved, { ...state, isLoading: false })
   ),
-  on(savedActions.savedDeleted, (state, { saved }) =>
-    savedAdapter.removeOne(saved.id, { ...state, isLoading: false })
+  on(savedActions.savedDeleted, (state, { id }) =>
+    savedAdapter.removeOne(id, { ...state, isLoading: false })
   ),
   on(
     savedActions.loadSaved,

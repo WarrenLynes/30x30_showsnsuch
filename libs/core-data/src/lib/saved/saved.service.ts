@@ -19,4 +19,12 @@ export class SavedService {
     localStorage.setItem('SAVED_MOVIES', JSON.stringify(savedMovies));
     return of(model);
   }
+
+  delete(id) {
+    const savedMovies = JSON.parse(localStorage.getItem('SAVED_MOVIES'));
+    const updatedMovies = savedMovies.filter((x) => x.id !== id);
+    console.log(updatedMovies);
+    localStorage.setItem('SAVED_MOVIES', JSON.stringify(updatedMovies));
+    return of(id)
+  }
 }

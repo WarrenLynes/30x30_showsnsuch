@@ -1,6 +1,17 @@
+<div class="container" *ngIf="movie$ | async as movie">
+  <div class="col-" style="flex: 0;">
+    <img [src]="movie.Poster" alt="">
+  </div>
+  <div class="col-">
+    <div class="movie-details">
+      <h1>{{movie.Title}}</h1>
+      <h4>{{movie.Plot}}</h4>
+    </div>
+  </div>
 
-
-<div *ngIf="movie$ | async as movie" id="movie-frame">
-  <h1>{{movie.Title}}</h1>
-  <h4>{{movie.Plot}}</h4>
+  <div class="actions">
+    <button mat-icon-button (click)="delete(movie.imdbID)">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
 </div>

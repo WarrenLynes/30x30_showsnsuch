@@ -38,8 +38,8 @@ export class SavedFacade {
     this.dispatch(savedActions.updateSaved({ saved }));
   }
 
-  deleteSaved(saved: Saved) {
-    this.dispatch(savedActions.deleteSaved({ saved }));
+  deleteSaved(id: any) {
+    this.dispatch(savedActions.deleteSaved({ id }));
   }
 
   private dispatch(action: Action) {
