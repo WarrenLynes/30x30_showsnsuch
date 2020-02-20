@@ -4,7 +4,7 @@ mat-list-item {
   height: auto!important;
   padding: 15px 0!important;
   img.thumb {
-    height: 12em;
+    height: calc(25vw)!important;
   }
 }
 
@@ -29,5 +29,64 @@ mat-list-item {
 }
 
 .mat-card {
-  background: none!important;
+  background: #151515 !important;
+  min-height: calc(100vh - 136px)!important;
+  margin-bottom: 0px;
+
+  mat-card-actions {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    right: 0;
+    background: #151515 !important;
+  }
+}
+mat-list-item {
+  padding: 0!important;
+}
+mat-list-item:hover {
+  .movie-title {
+    color: #0b0b0b;
+  }
+}
+
+
+.search-form {
+  width: 75vw;
+  max-width: 750px;
+  margin: auto;
+  display: flex;
+}
+
+.movie-title {
+  flex: 1;
+  max-width:75%;
+  margin: 0 12px;
+  text-align: center;
+  color: #202020;
+}
+
+
+@media only screen and (min-width: 800px) {
+  .movie-title {
+    font-size: 3em;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .movie-title {
+    font-size: 5em;
+  }
+}
+
+
+.liked-item-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border: 1px solid #00e676;
+  top: 0;
+  bottom: 0;
 }

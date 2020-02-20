@@ -19,7 +19,7 @@ export class MoviesEffects {
         state: MoviesPartialState
       ) => {
         this.appFacade.addLoad('[MOVIES][LOAD]');
-        return this.moviesService.search(action.query).pipe(
+        return this.moviesService.search(action.query, action.page).pipe(
           tap(() => this.notifyService.openSnackBar('Successfully Loaded Saved')),
           map((result: any) => moviesActions.movieLoaded({ data: result.Search.map(x => ({...x, id: x.imdbID})) })),
           tap(() => this.appFacade.removeLoad('[MOVIES][LOAD]'))

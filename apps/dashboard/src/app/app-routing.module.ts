@@ -22,7 +22,7 @@ import { LibraryComponent } from './library/library.component';
           { path: ':id', component: MovieDetailComponent }
         ]},
       { path: '**', redirectTo: '404', pathMatch: 'full' }
-    ], { initialNavigation: 'enabled' })
+    ])
   ]
 })
 export class AppRoutingModule {}

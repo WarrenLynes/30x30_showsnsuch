@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AppFacade, AuthFacade, SavedFacade } from '@showsnsuch/core-state';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
   authenticated$: Observable<boolean> = this.authFacade.authenticated$;
   destroy$: Subject<boolean> = new Subject();
   loading$: Observable<boolean> = this.appFacade.loading$;
+  loading = false;
 
   links = [
     {path: 'search', title: 'search', icon: 'search'},
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private authFacade: AuthFacade,
     private appFacade: AppFacade,
-    private savedFacade: SavedFacade
+    private savedFacade: SavedFacade,
+    private cdf: ChangeDetectorRef
   ){}
 
   ngOnInit(): void {
@@ -32,6 +34,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.appFacade.initialize();
     this.savedFacade.loadSaved();
+    this.appFacade.loading$.pipe(tap((loading) => {
+      this.loading = loading;
+      this.cdf.detectChanges();
+    }));
   }
 
   ngOnDestroy(): void {

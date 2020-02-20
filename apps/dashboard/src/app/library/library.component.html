@@ -1,1 +1,7 @@
-<p>library works!</p>
+
+<div class="container">
+  <showsnsuch-movie-detail
+    *ngFor="let saved of saved$ | async"
+    [imdbID]="saved.id"
+  ></showsnsuch-movie-detail>
+</div>

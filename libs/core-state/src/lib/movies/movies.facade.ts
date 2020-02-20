@@ -25,8 +25,8 @@ export class MoviesFacade {
     this.dispatch(moviesActions.movieSelected({ selectedMovieId }));
   }
 
-  loadMovies(query) {
-    this.dispatch(moviesActions.loadMovie({query}));
+  loadMovies(query, page) {
+    this.dispatch(moviesActions.loadMovie({query, page}));
   }
 
   private dispatch(action: Action) {

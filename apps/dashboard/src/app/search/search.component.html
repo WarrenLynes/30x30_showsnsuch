@@ -1,38 +1,36 @@
-<form (ngSubmit)="onSearch()" [formGroup]="searchForm">
-  <mat-form-field>
-    <mat-label>search</mat-label>
-    <input matInput type="text" formControlName="search">
-  </mat-form-field>
-</form>
+
 <div class="container">
-  <div class="col-12" *ngIf="searchResults$ | async; else choosesomething">
+  <div class="col-12">
     <mat-card>
+      <form (ngSubmit)="onSearch()" [formGroup]="searchForm" class="search-form">
+        <mat-form-field style="width: 75%; margin: 0 10px;">
+          <mat-label>search</mat-label>
+          <input matInput type="text" formControlName="search">
+        </mat-form-field>
+
+        <button style="width: 25%" mat-flat-button *ngIf="searchResults$ | async" (click)="paginate()" color="primary">search</button>
+      </form>
+
       <mat-card-content>
-        <mat-list>
-          <mat-list-item *ngFor="let data of searchResults$ | async" [ngClass]="{savedmovie: (saved$ | async)?.indexOf(data.imdbID) > -1}">
-            <div mat-line>
-              <div class="container">
-                <img [src]="data.Poster" alt="" class="thumb">
+        <mat-list *ngIf="(searchResults$ | async)?.length && show">
+          <mat-list-item *ngFor="let data of searchResults$ | async">
+            <div class="liked-item-overlay" *ngIf="(saved$ | async)?.indexOf(data.imdbID) > -1"></div>
 
-                <h1 style="flex: 1; text-align: right;">{{data.Title}}</h1>
-
-                <div class="actions">
-                  <button mat-flat-button [routerLink]="'/search/' + data.imdbID"> view </button>
-                  <button mat-flat-button (click)="saveMovie(data.imdbID)"> save </button>
-                </div>
-              </div>
-            </div>
+            <img [src]="data.Poster" class="thumb">
+            <h1 class="movie-title">{{data.Title}}</h1>
+            <button mat-icon-button class="full-width" [routerLink]="'/search/' + data.imdbID"> <mat-icon>zoom_out_map</mat-icon> </button>
+            <button mat-icon-button class="full-width" (click)="saveMovie(data.imdbID)"> <mat-icon>thumbs_up_down</mat-icon> </button>
           </mat-list-item>
         </mat-list>
 
-        <button (click)="paginate()">page</button>
       </mat-card-content>
+
+        <mat-card-actions *ngIf="(searchResults$ | async)?.length && show">
+          <button mat-icon-button (click)="paginate()" color="primary"><mat-icon>arrow_back</mat-icon></button>
+          <button mat-icon-button (click)="paginate()" color="primary"><mat-icon>arrow_forward</mat-icon></button>
+        </mat-card-actions>
     </mat-card>
   </div>
 </div>
-
-<ng-template #choosesomething>
-  <h1 style="text-align: center"> Search for something ... </h1>
-</ng-template>
 
 

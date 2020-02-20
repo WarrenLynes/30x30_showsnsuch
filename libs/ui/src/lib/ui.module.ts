@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from '@showsnsuch/material';
+import { SavedFormComponent } from './saved-form/saved-form.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { MaterialModule } from '@showsnsuch/material';
   declarations: [
     LoginComponent,
     NotFoundComponent,
+    SavedFormComponent,
   ],
   exports: [
     LoginComponent,

@@ -8,7 +8,7 @@ export const movieSelected = createAction(
 );
 export const loadMovie = createAction(
   '[MOVIES][LOAD]',
-  props<{query: string}>()
+  props<{query: string, page: number}>()
 );
 export const movieLoaded = createAction(
   '[MOVIES][LOADED]',
